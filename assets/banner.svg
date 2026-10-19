@@ -1,75 +1,171 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="moodle-mcp: ask Claude what's due, read course files, check grades">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="448" viewBox="0 0 1200 448" role="img" aria-label="moodle-mcp: ask Claude what's due, read course files, check grades">
   <defs>
+    <!-- Moodle palette: orange #F98012, deep orange #E8590C, amber #FFB547, Boost blue #0F6CBF -->
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b1220"/>
-      <stop offset="1" stop-color="#1b2645"/>
+      <stop offset="0" stop-color="#170d08"/>
+      <stop offset="0.55" stop-color="#120b0c"/>
+      <stop offset="1" stop-color="#0b0d18"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.82" cy="0.18" r="0.55">
-      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.22"/>
-      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow2" cx="0.08" cy="0.95" r="0.5">
-      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.14"/>
-      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.2" fill="#ffffff" fill-opacity="0.05"/>
-    </pattern>
+
+    <clipPath id="canvas"><rect width="1200" height="448" rx="28"/></clipPath>
+    <clipPath id="clipL"><rect x="48" y="64" width="620" height="320" rx="26"/></clipPath>
+    <clipPath id="clipR"><rect x="700" y="40" width="452" height="368" rx="26"/></clipPath>
+    <clipPath id="clipN"><rect x="566" y="374" width="244" height="54" rx="20"/></clipPath>
+
+    <filter id="blurBg" filterUnits="userSpaceOnUse" x="-300" y="-300" width="1800" height="1048">
+      <feGaussianBlur stdDeviation="58"/>
+    </filter>
+    <filter id="blurGlass" filterUnits="userSpaceOnUse" x="-300" y="-300" width="1800" height="1048">
+      <feGaussianBlur stdDeviation="96"/>
+    </filter>
+    <filter id="shadow" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1400" height="648">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="grain" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="448">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0"/>
+    </filter>
+
+    <linearGradient id="glassFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.20"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="glassEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="0.35" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="0.75" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#ffd3a8" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFA24C"/>
+      <stop offset="0.5" stop-color="#F98012"/>
+      <stop offset="1" stop-color="#E8590C"/>
+    </linearGradient>
+    <linearGradient id="titleInk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.62" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#FFD3A8"/>
+    </linearGradient>
+
+    <!-- colour field that every glass panel "sees through" -->
+    <g id="blobs">
+      <circle cx="210" cy="96" r="210" fill="#F98012" fill-opacity="0.95"/>
+      <circle cx="470" cy="300" r="120" fill="#FFB547" fill-opacity="0.55"/>
+      <circle cx="660" cy="430" r="190" fill="#E8590C" fill-opacity="0.80"/>
+      <circle cx="1000" cy="70" r="190" fill="#0F6CBF" fill-opacity="0.85"/>
+      <circle cx="1120" cy="410" r="160" fill="#FFB547" fill-opacity="0.70"/>
+      <circle cx="860" cy="250" r="110" fill="#F98012" fill-opacity="0.45"/>
+    </g>
   </defs>
 
-  <rect width="1200" height="420" rx="24" fill="url(#bg)"/>
-  <rect width="1200" height="420" rx="24" fill="url(#dots)"/>
-  <rect width="1200" height="420" rx="24" fill="url(#glow)"/>
-  <rect width="1200" height="420" rx="24" fill="url(#glow2)"/>
+  <g clip-path="url(#canvas)">
+    <rect width="1200" height="448" fill="url(#bg)"/>
+    <use href="#blobs" xlink:href="#blobs" filter="url(#blurBg)"/>
+    <rect width="1200" height="448" filter="url(#grain)" opacity="0.6"/>
 
-  <!-- left: title -->
-  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
-    <text x="64" y="118" fill="#f59e0b" font-size="15" font-weight="700" letter-spacing="3">MCP SERVER  ·  CLI  ·  PYTHON</text>
-    <text x="62" y="194" fill="#f8fafc" font-size="74" font-weight="800" letter-spacing="-1.5">moodle-mcp</text>
-    <text x="64" y="244" fill="#cbd5e1" font-size="24">Ask Claude what's due, read the lecture PDF,</text>
-    <text x="64" y="278" fill="#cbd5e1" font-size="24">check your grades. Your Moodle, as tools.</text>
+    <!-- shadows -->
+    <rect x="60" y="88" width="596" height="308" rx="26" fill="#000" fill-opacity="0.45" filter="url(#shadow)"/>
+    <rect x="712" y="64" width="428" height="356" rx="26" fill="#000" fill-opacity="0.45" filter="url(#shadow)"/>
 
-    <g font-size="15" font-weight="600">
-      <rect x="64" y="314" width="96" height="34" rx="17" fill="#f59e0b" fill-opacity="0.14" stroke="#f59e0b" stroke-opacity="0.45"/>
-      <text x="112" y="336" fill="#fbbf24" text-anchor="middle">17 tools</text>
-      <rect x="172" y="314" width="190" height="34" rx="17" fill="#2dd4bf" fill-opacity="0.10" stroke="#2dd4bf" stroke-opacity="0.40"/>
-      <text x="267" y="336" fill="#5eead4" text-anchor="middle">read-only by default</text>
-      <rect x="374" y="314" width="240" height="34" rx="17" fill="#94a3b8" fill-opacity="0.10" stroke="#94a3b8" stroke-opacity="0.40"/>
-      <text x="494" y="336" fill="#cbd5e1" text-anchor="middle">token stays on your laptop</text>
+    <!-- left glass card -->
+    <g clip-path="url(#clipL)">
+      <use href="#blobs" xlink:href="#blobs" filter="url(#blurGlass)"/>
+      <rect x="48" y="64" width="620" height="320" fill="#140b07" fill-opacity="0.38"/>
+      <rect x="48" y="64" width="620" height="320" fill="url(#glassFill)"/>
+      <rect x="48" y="64" width="620" height="120" fill="url(#sheen)"/>
+      <rect x="48" y="64" width="620" height="320" filter="url(#grain)"/>
     </g>
-  </g>
+    <rect x="48.5" y="64.5" width="619" height="319" rx="25.5" fill="none" stroke="url(#glassEdge)" stroke-width="1.2"/>
 
-  <!-- right: chat mock (sample data) -->
-  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
-    <rect x="690" y="52" width="446" height="316" rx="18" fill="#0f172a" fill-opacity="0.92" stroke="#334155"/>
-    <circle cx="716" cy="76" r="5.5" fill="#475569"/>
-    <circle cx="734" cy="76" r="5.5" fill="#475569"/>
-    <circle cx="752" cy="76" r="5.5" fill="#475569"/>
-    <text x="913" y="81" fill="#64748b" font-size="13" text-anchor="middle">Claude</text>
-    <line x1="690" y1="96" x2="1136" y2="96" stroke="#1e293b"/>
-
-    <rect x="900" y="110" width="212" height="38" rx="19" fill="#f59e0b"/>
-    <text x="1006" y="135" fill="#1c1206" font-size="16" font-weight="600" text-anchor="middle">what's due this week?</text>
-
-    <text x="714" y="178" fill="#2dd4bf" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">› moodle_deadlines(days_ahead=7)</text>
-
-    <g>
-      <rect x="714" y="196" width="4" height="38" rx="2" fill="#f59e0b"/>
-      <text x="730" y="211" fill="#f8fafc" font-size="13" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">CHEM 111</text>
-      <text x="730" y="230" fill="#cbd5e1" font-size="15">Lab 5 report</text>
-      <text x="1112" y="221" fill="#94a3b8" font-size="13" text-anchor="end">Thu 11:59 PM</text>
+    <!-- right glass card -->
+    <g clip-path="url(#clipR)">
+      <use href="#blobs" xlink:href="#blobs" filter="url(#blurGlass)"/>
+      <rect x="700" y="40" width="452" height="368" fill="#0d0a14" fill-opacity="0.42"/>
+      <rect x="700" y="40" width="452" height="368" fill="url(#glassFill)"/>
+      <rect x="700" y="40" width="452" height="120" fill="url(#sheen)"/>
+      <rect x="700" y="40" width="452" height="368" filter="url(#grain)"/>
     </g>
-    <g>
-      <rect x="714" y="248" width="4" height="38" rx="2" fill="#2dd4bf"/>
-      <text x="730" y="263" fill="#f8fafc" font-size="13" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">ENGL 205</text>
-      <text x="730" y="282" fill="#cbd5e1" font-size="15">Essay draft 2</text>
-      <text x="1112" y="273" fill="#94a3b8" font-size="13" text-anchor="end">Fri 5:00 PM</text>
+    <rect x="700.5" y="40.5" width="451" height="367" rx="25.5" fill="none" stroke="url(#glassEdge)" stroke-width="1.2"/>
+
+    <!-- left: title -->
+    <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+      <text x="92" y="120" fill="#FFD3A8" font-size="13" font-weight="700" letter-spacing="3.2">MCP SERVER  ·  CLI  ·  PYTHON</text>
+      <text x="89" y="192" fill="url(#titleInk)" font-size="74" font-weight="800" letter-spacing="-1.6">moodle-mcp</text>
+      <text x="92" y="238" fill="#ffffff" fill-opacity="0.86" font-size="22">Ask Claude what's due, read the lecture PDF,</text>
+      <text x="92" y="270" fill="#ffffff" fill-opacity="0.86" font-size="22">check your grades. Your Moodle, as tools.</text>
+
+      <g font-size="14" font-weight="600">
+        <rect x="92" y="304" width="104" height="34" rx="17" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.30"/>
+        <circle cx="108" cy="321" r="4.5" fill="#F98012"/>
+        <text x="120" y="326" fill="#ffffff">17 tools</text>
+
+        <rect x="206" y="304" width="198" height="34" rx="17" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.30"/>
+        <circle cx="222" cy="321" r="4.5" fill="#FFB547"/>
+        <text x="234" y="326" fill="#ffffff">read-only by default</text>
+
+        <rect x="414" y="304" width="196" height="34" rx="17" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.30"/>
+        <circle cx="430" cy="321" r="4.5" fill="#4DA3FF"/>
+        <text x="442" y="326" fill="#ffffff">runs on your laptop</text>
+      </g>
     </g>
-    <g>
-      <rect x="714" y="300" width="4" height="38" rx="2" fill="#a78bfa"/>
-      <text x="730" y="315" fill="#f8fafc" font-size="13" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">MATH 131</text>
-      <text x="730" y="334" fill="#cbd5e1" font-size="15">Quiz 4</text>
-      <text x="1112" y="325" fill="#94a3b8" font-size="13" text-anchor="end">Sun 11:00 PM</text>
+
+    <!-- right: chat mock (sample data) -->
+    <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+      <circle cx="728" cy="68" r="5.5" fill="#ffffff" fill-opacity="0.35"/>
+      <circle cx="746" cy="68" r="5.5" fill="#ffffff" fill-opacity="0.35"/>
+      <circle cx="764" cy="68" r="5.5" fill="#ffffff" fill-opacity="0.35"/>
+      <text x="926" y="73" fill="#ffffff" fill-opacity="0.6" font-size="13" text-anchor="middle">Claude</text>
+      <line x1="700" y1="92" x2="1152" y2="92" stroke="#ffffff" stroke-opacity="0.14"/>
+
+      <rect x="906" y="108" width="222" height="40" rx="20" fill="url(#orange)"/>
+      <rect x="906" y="108" width="222" height="20" rx="10" fill="#ffffff" fill-opacity="0.12"/>
+      <text x="1017" y="134" fill="#ffffff" font-size="16" font-weight="700" text-anchor="middle">what's due this week?</text>
+
+      <text x="726" y="180" fill="#FFD3A8" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">› moodle_deadlines(days_ahead=7)</text>
+
+      <g>
+        <rect x="724" y="194" width="404" height="52" rx="14" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.14"/>
+        <rect x="740" y="204" width="4" height="32" rx="2" fill="#F98012"/>
+        <text x="756" y="215" fill="#ffffff" font-size="13" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">CHEM 111</text>
+        <text x="756" y="234" fill="#ffffff" fill-opacity="0.82" font-size="15">Lab 5 report</text>
+        <text x="1112" y="225" fill="#ffffff" fill-opacity="0.65" font-size="13" text-anchor="end">Thu 11:59 PM</text>
+      </g>
+      <g>
+        <rect x="724" y="252" width="404" height="52" rx="14" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.14"/>
+        <rect x="740" y="262" width="4" height="32" rx="2" fill="#FFB547"/>
+        <text x="756" y="273" fill="#ffffff" font-size="13" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">ENGL 205</text>
+        <text x="756" y="292" fill="#ffffff" fill-opacity="0.82" font-size="15">Essay draft 2</text>
+        <text x="1112" y="283" fill="#ffffff" fill-opacity="0.65" font-size="13" text-anchor="end">Fri 5:00 PM</text>
+      </g>
+      <g>
+        <rect x="724" y="310" width="404" height="52" rx="14" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.14"/>
+        <rect x="740" y="320" width="4" height="32" rx="2" fill="#4DA3FF"/>
+        <text x="756" y="331" fill="#ffffff" font-size="13" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">MATH 131</text>
+        <text x="756" y="350" fill="#ffffff" fill-opacity="0.82" font-size="15">Quiz 4</text>
+        <text x="1112" y="341" fill="#ffffff" fill-opacity="0.65" font-size="13" text-anchor="end">Sun 11:00 PM</text>
+      </g>
+    </g>
+
+    <!-- floating reminder pill (sample data) -->
+    <rect x="576" y="392" width="226" height="46" rx="20" fill="#000" fill-opacity="0.5" filter="url(#shadow)"/>
+    <g clip-path="url(#clipN)">
+      <use href="#blobs" xlink:href="#blobs" filter="url(#blurGlass)"/>
+      <rect x="566" y="374" width="244" height="54" fill="#1a0f0a" fill-opacity="0.30"/>
+      <rect x="566" y="374" width="244" height="54" fill="url(#glassFill)"/>
+      <rect x="566" y="374" width="244" height="54" fill="#ffffff" fill-opacity="0.06"/>
+    </g>
+    <rect x="566.5" y="374.5" width="243" height="53" rx="19.5" fill="none" stroke="url(#glassEdge)" stroke-width="1.2"/>
+    <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+      <circle cx="598" cy="401" r="16" fill="url(#orange)"/>
+      <circle cx="598" cy="401" r="7" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M598 396.8 V401 L601.3 403" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="624" y="396" fill="#ffffff" font-size="14" font-weight="700">Due in 2 days</text>
+      <text x="624" y="415" fill="#ffffff" fill-opacity="0.72" font-size="12.5">CHEM 111 · Lab 5 report</text>
     </g>
   </g>
 </svg>

@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/ralstonraphael/moodle-mcp/actions/workflows/ci.yml"><img src="https://github.com/ralstonraphael/moodle-mcp/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10+">
-  <img src="https://img.shields.io/badge/MCP-stdio%20server-8A63D2" alt="MCP stdio server">
+  <img src="https://img.shields.io/badge/MCP-stdio%20server-F98012" alt="MCP stdio server">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e" alt="MIT license"></a>
 </p>
 
